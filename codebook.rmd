@@ -1,0 +1,736 @@
+---
+title: "Getting and Cleaning Data Course Project"
+author: "Anika Tahsin"
+date: "2020-11-20 19:05:25"
+output:
+  html_document:
+    keep_md: yes
+---
+
+## Project Description
+A large data set is collected, cleaned and further processed using an R script for exploratory downstream analysis.
+
+##Study design and data processing
+
+###Collection of the raw data
+The data set titled "Human Activity Recognition Using Smartphones Data Set" is obtained from the 'Machine Learning Repository' of Center for Machine Learning and Intelligent Systems. A data folder as well as a data set description is publicly available for download.
+Link to the website: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#
+
+###Notes on the original (raw) data 
+The original raw data contained within the folders 'Inertial signals' for test and train data set are pre-processed into X_test.txt and X_train.txt, respectively and thus is unused in the analysis.
+
+
+##Creating the tidy datafile
+
+###Guide to create the tidy data file
+1. download the data from the provided link
+2. read the data set description to identify the files to use
+3. load the pre-processed test and train data sets into R
+4. merge the data sets to create one data set
+5. extract the columns for mean and standard deviation
+6. rewrite the activity labels with descriptive names
+7. edit the variable names with appropriate descriptions
+8. create the tidy data set by calculating mean of the same subject-activity pairs
+
+###Cleaning of the data
+The script loads the two pre-processed data sets (X_test.txt and X_train.txt) into R as data frames, vertically adds the subject IDs and activity labels to the respective data sets, merges the data sets, extracts the columns (of measurements on mean and standard deviation) specified, descriptively replaces the variable names and activity labels. Finally, it summarizes the data set by producing mean values for same subject-activity pairs.
+For further details: https://github.com/ninsquid/Getting-and-Cleaning-Data/blob/main/README.md
+
+
+##Description of the variables in the tidy_data.txt file
+
+The dataset examined has the following dimensions:
+---------------------------------
+Feature                    Result
+------------------------ --------
+Number of observations        180
+
+Number of variables            68
+---------------------------------
+
+---------------------------------------------------------------------------------------
+Label   Variable                         Class         # unique  Missing    Description  
+                                                         values                        
+------- -------------------------------- ----------- ---------- --------- -------------
+        **[subID]**                      integer             30  0.00 %     subject identifier          
+
+        **[actLabel]**                   character            6  0.00 %     activity label         
+
+        **[tBodyAccMeanX]**              numeric            180  0.00 %     mean of linear body acceleration signals in time domain along x-axis from accelerator           
+
+        **[tBodyAccMeanY]**              numeric            180  0.00 %     mean of linear body acceleration signals in time domain along y-axis from accelerator                      
+
+        **[tBodyAccMeanZ]**              numeric            180  0.00 %     mean of linear body acceleration signals in time domain along z-axis from accelerator                     
+
+        **[tBodyAccStdX]**               numeric            180  0.00 %     standard deviation of linear body acceleration signals in time domain along x-axis from accelerator        
+
+        **[tBodyAccStdY]**               numeric            180  0.00 %     standard deviation of linear body acceleration signals in time domain along y-axis from accelerator                   
+
+        **[tBodyAccStdZ]**               numeric            180  0.00 %     standard deviation of linear body acceleration signals in time domain along z-axis from accelerator                   
+
+        **[tGravityAccMeanX]**           numeric            180  0.00 %     mean of linear gravitational acceleration signals in time domain along x-axis from accelerator                                
+
+        **[tGravityAccMeanY]**           numeric            180  0.00 %     mean of linear gravitational acceleration signals in time domain along y-axis from accelerator           
+
+        **[tGravityAccMeanZ]**           numeric            180  0.00 %     mean of linear gravitational acceleration signals in time domain along y-axis from accelerator           
+
+        **[tGravityAccStdX]**            numeric            180  0.00 %     standard deviation of linear gravitational acceleration signals in time domain along x-axis from accelerator                              
+
+        **[tGravityAccStdY]**            numeric            180  0.00 %     standard deviation of linear gravitational acceleration signals in time domain along y-axis from accelerator                           
+
+        **[tGravityAccStdZ]**            numeric            180  0.00 %     standard deviation of linear gravitational acceleration signals in time domain along z-axis from accelerator                           
+
+        **[tBodyAccJerkMeanX]**          numeric            180  0.00 %     mean of jerk signals obtained from body linear acceleration along the x-axis derived in time         
+
+        **[tBodyAccJerkMeanY]**          numeric            180  0.00 %     mean of jerk signals obtained from body linear acceleration along the y-axis derived in time           
+
+        **[tBodyAccJerkMeanZ]**          numeric            180  0.00 %     mean of jerk signals obtained from body linear acceleration along the z-axis derived in time           
+
+        **[tBodyAccJerkStdX]**           numeric            180  0.00 %     standard deviation of jerk signals obtained from body linear acceleration along the x-axis derived in time           
+
+        **[tBodyAccJerkStdY]**           numeric            180  0.00 %     standard deviation of jerk signals obtained from body linear acceleration along the y-axis derived in time           
+
+        **[tBodyAccJerkStdZ]**           numeric            180  0.00 %     standard deviation of jerk signals obtained from body linear acceleration along the z-axis derived in time           
+
+        **[tBodyGyroMeanX]**             numeric            180  0.00 %     mean of angular body velocity signals in time domain along x-axis from gyroscope           
+
+        **[tBodyGyroMeanY]**             numeric            180  0.00 %     mean of angular body velocity signals in time domain along y-axis from gyroscope                      
+
+        **[tBodyGyroMeanZ]**             numeric            180  0.00 %     mean of angular body velocity signals in time domain along z-axis from gyroscope                      
+
+        **[tBodyGyroStdX]**              numeric            180  0.00 %     standard deviation of angular body velocity signals in time domain along x-axis from gyroscope                      
+
+        **[tBodyGyroStdY]**              numeric            180  0.00 %     standard deviation of angular body velocity signals in time domain along y-axis from gyroscope           
+
+        **[tBodyGyroStdZ]**              numeric            180  0.00 %     standard deviation of angular body velocity signals in time domain along z-axis from gyroscope           
+
+        **[tBodyGyroJerkMeanX]**         numeric            180  0.00 %     mean of jerk signals obtained from angular body velocity along the x-axis derived in time           
+
+        **[tBodyGyroJerkMeanY]**         numeric            180  0.00 %     mean of jerk signals obtained from angular body velocity along the y-axis derived in time                   
+
+        **[tBodyGyroJerkMeanZ]**         numeric            180  0.00 %     mean of jerk signals obtained from angular body velocity along the z-axis derived in time                   
+
+        **[tBodyGyroJerkStdX]**          numeric            180  0.00 %     standard deviation of jerk signals obtained from angular body velocity along the x-axis derived in time                   
+
+        **[tBodyGyroJerkStdY]**          numeric            180  0.00 %     standard deviation of jerk signals obtained from angular body velocity along the y-axis derived in time            
+
+        **[tBodyGyroJerkStdZ]**          numeric            180  0.00 %     standard deviation of jerk signals obtained from angular body velocity along the z-axis derived in time            
+
+        **[tBodyAccMagMean]**            numeric            180  0.00 %     mean of the magnitudes of linear body acceleration signals in time domain using the Euclidean norm         
+
+        **[tBodyAccMagStd]**             numeric            180  0.00 %     standard deviation of the magnitudes of linear body acceleration signals in time domain using the Euclidean norm               
+
+        **[tGravityAccMagMean]**         numeric            180  0.00 %     mean of the magnitudes of linear gravitational acceleration signals in time domain using the Euclidean norm               
+
+        **[tGravityAccMagStd]**          numeric            180  0.00 %     standard deviation of the magnitudes of linear gravitational acceleration signals in time domain using the Euclidean norm               
+
+        **[tBodyAccJerkMagMean]**        numeric            180  0.00 %     mean of the magnitudes of jerk signals obtained from linear body acceleration signals using the Euclidean norm          
+
+        **[tBodyAccJerkMagStd]**         numeric            180  0.00 %     standard deviation of the magnitudes of jerk signals obtained from linear body acceleration signals using the Euclidean norm           
+
+        **[tBodyGyroMagMean]**           numeric            180  0.00 %     mean of the magnitudes of angular body velocity signals in time domain using the Euclidean norm               
+
+        **[tBodyGyroMagStd]**            numeric            180  0.00 %     standard deviation of the magnitudes of angular body velocity signals in time domain using the Euclidean norm                  
+
+        **[tBodyGyroJerkMagMean]**       numeric            180  0.00 %     mean of the magnitudes of jerk signals obtained from angular body velocity signals using the Euclidean norm          
+
+        **[tBodyGyroJerkMagStd]**        numeric            180  0.00 %     standard deviation of the magnitudes of jerk signals obtained from angular body velocity signals using the Euclidean norm           
+
+        **[fBodyAccMeanX]**              numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) linear body acceleration signals along x-axis
+
+        **[fBodyAccMeanY]**              numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) linear body acceleration signals along y-axis          
+
+        **[fBodyAccMeanZ]**              numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) linear body acceleration signals along z-axis           
+
+        **[fBodyAccStdX]**               numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) linear body acceleration signals along x-axis           
+
+        **[fBodyAccStdY]**               numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) linear body acceleration signals along y-axis                 
+
+        **[fBodyAccStdZ]**               numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) linear body acceleration signals along z-axis                 
+
+        **[fBodyAccJerkMeanX]**          numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) jerk signals along the x-axis derived in time           
+
+        **[fBodyAccJerkMeanY]**          numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) jerk signals along the y-axis derived in time                      
+
+        **[fBodyAccJerkMeanZ]**          numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) jerk signals along the z-axis derived in time                      
+
+        **[fBodyAccJerkStdX]**           numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) jerk signals along the x-axis derived in time                      
+
+        **[fBodyAccJerkStdY]**           numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) jerk signals along the y-axis derived in time                 
+
+        **[fBodyAccJerkStdZ]**           numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) jerk signals along the z-axis derived in time                 
+
+        **[fBodyGyroMeanX]**             numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) angular body velocity signals along x-axis                 
+
+        **[fBodyGyroMeanY]**             numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) angular body velocity signals along y-axis           
+
+        **[fBodyGyroMeanZ]**             numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) angular body velocity signals along z-axis                          
+
+        **[fBodyGyroStdX]**              numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) angular body velocity signals along x-axis                          
+
+        **[fBodyGyroStdY]**              numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) angular body velocity signals along y-axis                    
+
+        **[fBodyGyroStdZ]**              numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) angular body velocity signals along z-axis                    
+
+        **[fBodyAccMagMean]**            numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) magnitudes of linear body acceleration signals using the Euclidean norm           
+
+        **[fBodyAccMagStd]**             numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) magnitudes of linear body acceleration signals using the Euclidean norm           
+
+        **[fBodyAccJerkMagMean]**    numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) magnitudes of jerk signals obtained from linear body acceleration signals using the Euclidean norm           
+
+        **[fBodyAccJerkMagStd]**     numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) magnitudes of jerk signals obtained from linear body acceleration signals using the Euclidean norm                      
+
+        **[fBodyGyroMagMean]**       numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) magnitudes of angular body velocity signals using the Euclidean norm          
+
+        **[fBodyGyroMagStd]**        numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) magnitudes of angular body velocity signals using the Euclidean norm            
+
+        **[fBodyGyroJerkMagMean]**   numeric            180  0.00 %     mean of the Fast Fourier Transformed (FFT) magnitudes of jerk signals obtained from angular body velocity signals using the Euclidean norm                
+
+        **[fBodyGyroJerkMagStd]**    numeric            180  0.00 %     standard deviation of the Fast Fourier Transformed (FFT) magnitudes of jerk signals obtained from angular body velocity signals using the Euclidean norm                           
+---------------------------------------------------------------------------------------
+
+
+### subID
+An identifier of the subject who carried out the experiment.
+
+> variable  class: integer
+> unique values: 30
+> unit of measurement: none
+
+### actLabel
+Activity label provides the activity names that were carried out during data collection.
+
+> variable  class: character
+> unique values: 6
+> unit of measurement: none
+> observed factor levels: \"LAYING\", \"SITTING\", \"STANDING\", \"WALKING\", \"WALKING_DOWNSTAIRS\", \"WALKING_UPSTAIRS\"
+
+### tBodyAccMeanX 
+mean of linear body acceleration signals in time domain along x-axis from accelerator.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Body Acceleration signals- Mean value- along X axis
+
+### tBodyAccMeanY 
+mean of linear body acceleration signals in time domain along y-axis from accelerator.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Body Acceleration signals- Mean value- along Y axis
+
+### tBodyAccMeanZ 
+mean of linear body acceleration signals in time domain along z-axis from accelerator.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Body Acceleration signals- Mean value- along Z axis
+
+### tBodyAccStdX 
+standard deviation of linear body acceleration signals in time domain along x-axis from accelerator.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Body Acceleration signals- Standard Deviation value- along X axis
+
+### tBodyAccStdY 
+standard deviation of linear body acceleration signals in time domain along y-axis from accelerator.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Body Acceleration signals- Standard Deviation value- along Y axis
+
+### tBodyAccStdZ 
+standard deviation of linear body acceleration signals in time domain along z-axis from accelerator.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Body Acceleration signals- Standard Deviation value- along Z axis
+
+### tGravityAccMeanX
+mean of linear gravitational acceleration signals in time domain along x-axis from accelerator
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Gravitational Acceleration signals- Mean value- along X axis
+
+### tGravityAccMeanY
+mean of linear gravitational acceleration signals in time domain along y-axis from accelerator
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Gravitational Acceleration signals- Mean value- along Y axis
+
+### tGravityAccMeanZ
+mean of linear gravitational acceleration signals in time domain along z-axis from accelerator
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Gravitational Acceleration signals- Mean value- along Z axis 
+
+### tGravityAccStdX
+standard deviation of linear gravitational acceleration signals in time domain along x-axis from accelerator
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Gravitational Acceleration signals- Standard Deviation value- along X axis
+
+### tGravityAccStdY
+standard deviation of linear gravitational acceleration signals in time domain along y-axis from accelerator
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Gravitational Acceleration signals- Standard Deviation value- along Y axis
+
+### tGravityAccStdZ
+standard deviation of linear gravitational acceleration signals in time domain along z-axis from accelerator
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- linear Gravitational Acceleration signals- Standard Deviation value- along Z axis
+
+### tBodyAccJerkMeanX
+mean of jerk signals obtained from body linear acceleration along the x-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of linear Body Acceleration) signals- Mean value- along X axis
+
+### tBodyAccJerkMeanY
+mean of jerk signals obtained from body linear acceleration along the y-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of linear Body Acceleration) signals- Mean value- along Y axis
+
+### tBodyAccJerkMeanZ
+mean of jerk signals obtained from body linear acceleration along the z-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of linear Body Acceleration) signals- Mean value- along Z axis
+
+### tBodyAccJerkStdX
+standard deviation of jerk signals obtained from body linear acceleration along the x-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of linear Body Acceleration) signals- Standard Deviation value- along X axis
+
+### tBodyAccJerkStdY
+standard deviation of jerk signals obtained from body linear acceleration along the y-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of linear Body Acceleration) signals- Standard Deviation value- along Y axis
+
+### tBodyAccJerkStdZ
+standard deviation of jerk signals obtained from body linear acceleration along the z-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of linear Body Acceleration) signals- Standard Deviation value- along Z axis
+
+### tBodyGyroMeanX
+mean of angular body velocity signals in time domain along x-axis from gyroscope.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- angular Body velocity signals from Gyroscope- Mean value- along X axis
+
+### tBodyGyroMeanY
+mean of angular body velocity signals in time domain along y-axis from gyroscope.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- angular Body velocity signals from Gyroscope- Mean value- along Y axis
+
+### tBodyGyroMeanZ
+mean of angular body velocity signals in time domain along z-axis from gyroscope.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- angular Body velocity signals from Gyroscope- Mean value- along Z axis
+
+### tBodyGyroStdX
+standard deviation of angular body velocity signals in time domain along x-axis from gyroscope.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- angular Body velocity signals from Gyroscope- Standard Deviation value- along X axis
+
+### tBodyGyroStdY
+standard deviation of angular body velocity signals in time domain along y-axis from gyroscope.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- angular Body velocity signals from Gyroscope- Standard Deviation value- along Y axis
+
+### tBodyGyroStdZ
+standard deviation of angular body velocity signals in time domain along z-axis from gyroscope.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- angular Body velocity signals from Gyroscope- Standard Deviation value- along Z axis
+
+### tBodyGyroJerkMeanX
+mean of jerk signals obtained from angular body velocity along the x-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of angular Body velocity) signals- Mean value- along X axis
+
+### tBodyGyroJerkMeanY
+mean of jerk signals obtained from angular body velocity along the y-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of angular Body velocity) signals- Mean value- along Y axis
+
+### tBodyGyroJerkMeanZ
+mean of jerk signals obtained from angular body velocity along the z-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of angular Body velocity) signals- Mean value- along Z axis
+
+### tBodyGyroJerkStdX
+standard deviation of jerk signals obtained from angular body velocity along the x-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of angular Body velocity) signals- Standard Deviation value- along X axis
+
+### tBodyGyroJerkStdY
+standard deviation of jerk signals obtained from angular body velocity along the y-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of angular Body velocity) signals- Standard Deviation value- along Y axis
+
+### tBodyGyroJerkStdZ
+standard deviation of jerk signals obtained from angular body velocity along the z-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Jerk (first derivative of angular Body velocity) signals- Standard Deviation value- along Z axis
+
+### tBodyAccMagMean
+mean of the magnitudes of linear body acceleration signals in time domain using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of linear Body Acceleration signals- Mean value
+
+### tBodyAccMagStd
+standard deviation of the magnitudes of linear body acceleration signals in time domain using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of linear Body Acceleration signals- Standard Deviation value
+
+### tGravityAccMagMean
+mean of the magnitudes of linear gravitational acceleration signals in time domain using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of linear Gravitational Acceleration signals- Mean value
+
+### tGravityAccMagStd
+standard deviation of the magnitudes of linear gravitational acceleration signals in time domain using the Euclidean norm               
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of linear Gravitational Acceleration signals- Standard Deviation value
+
+### tBodyAccJerkMagMean
+mean of the magnitudes of jerk signals obtained from linear body acceleration signals using the Euclidean norm.
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of Jerk (first derivative of linear Body Acceleration) signals- Mean value
+
+### tBodyAccJerkMagStd
+standard deviation of the magnitudes of jerk signals obtained from linear body acceleration signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of Jerk (first derivative of linear Body Acceleration) signals- Standard Deviation value
+
+### tBodyGyroMagMean
+mean of the magnitudes of angular body velocity signals in time domain using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of angular Body velocity signals (using Gyroscope)- Mean value
+
+### tBodyGyroMagStd
+standard deviation of the magnitudes of angular body velocity signals in time domain using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of angular Body velocity signals (using Gyroscope)- Standard Deviation value
+
+### tBodyGyroJerkMagMean
+mean of the magnitudes of jerk signals obtained from angular body velocity signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of Jerk (first derivative of angular Body velocity) signals (using Gyroscope)- Mean value
+
+### tBodyGyroJerkMagStd
+standard deviation of the magnitudes of jerk signals obtained from angular body velocity signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in time domain- Magnitude of Jerk (first derivative of angular Body velocity) signals (using Gyroscope)- Standard Deviation value
+
+### fBodyAccMeanX
+mean of the Fast Fourier Transformed (FFT) linear body acceleration signals along x-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- linear Body Acceleration signals- Mean value- along X axis
+
+### fBodyAccMeanY
+mean of the Fast Fourier Transformed (FFT) linear body acceleration signals along y-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- linear Body Acceleration signals- Mean value- along Y axis
+
+### fBodyAccMeanX
+mean of the Fast Fourier Transformed (FFT) linear body acceleration signals along z-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- linear Body Acceleration signals- Mean value- along Z axis
+
+### fBodyAccStdX
+standard deviation of the Fast Fourier Transformed (FFT) linear body acceleration signals along x-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- linear Body Acceleration signals- Standard Deviation value- along X axis
+
+### fBodyAccStdY
+standard deviation of the Fast Fourier Transformed (FFT) linear body acceleration signals along y-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- linear Body Acceleration signals- Standard Deviation value- along Y axis
+
+### fBodyAccStdZ
+standard deviation of the Fast Fourier Transformed (FFT) linear body acceleration signals along z-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- linear Body Acceleration signals- Standard Deviation value- along Z axis
+
+### fBodyAccJerkMeanX
+mean of the Fast Fourier Transformed (FFT) jerk signals along the x-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Jerk (first derivative of linear Body Acceleration) signals- Mean value- along X axis
+
+### fBodyAccJerkMeanY
+mean of the Fast Fourier Transformed (FFT) jerk signals along the y-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Jerk (first derivative of linear Body Acceleration) signals- Mean value- along Y axis
+
+### fBodyAccJerkMeanZ
+mean of the Fast Fourier Transformed (FFT) jerk signals along the z-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Jerk (first derivative of linear Body Acceleration) signals- Mean value- along Z axis
+
+### fBodyAccJerkStdX
+standard deviation of the Fast Fourier Transformed (FFT) jerk signals along the x-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Jerk (first derivative of linear Body Acceleration) signals- Standard Deviation value- along X axis
+
+### fBodyAccJerkStdY
+standard deviation of the Fast Fourier Transformed (FFT) jerk signals along the y-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Jerk (first derivative of linear Body Acceleration) signals- Standard Deviation value- along Y axis
+
+### fBodyAccJerkStdZ
+standard deviation of the Fast Fourier Transformed (FFT) jerk signals along the z-axis derived in time.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Jerk (first derivative of linear Body Acceleration) signals- Standard Deviation value- along Z axis
+
+### fBodyGyroMeanX
+mean of the Fast Fourier Transformed (FFT) angular body velocity signals along x-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- angular Body velocity signals from Gyroscope- Mean value- along X axis
+
+### fBodyGyroMeanY
+mean of the Fast Fourier Transformed (FFT) angular body velocity signals along y-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- angular Body velocity signals from Gyroscope- Mean value- along Y axis
+
+### fBodyGyroMeanZ
+mean of the Fast Fourier Transformed (FFT) angular body velocity signals along z-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- angular Body velocity signals from Gyroscope- Mean value- along Z axis
+
+### fBodyGyroStdX
+standard deviation of the Fast Fourier Transformed (FFT) angular body velocity signals along x-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- angular Body velocity signals from Gyroscope- Standard Deviation value- along X axis
+
+### fBodyGyroStdY
+standard deviation of the Fast Fourier Transformed (FFT) angular body velocity signals along y-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- angular Body velocity signals from Gyroscope- Standard Deviation value- along Y axis
+
+### fBodyGyroStdZ
+standard deviation of the Fast Fourier Transformed (FFT) angular body velocity signals along z-axis.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- angular Body velocity signals from Gyroscope- Standard Deviation value- along Z axis
+
+### fBodyAccMagMean
+mean of the Fast Fourier Transformed (FFT) magnitudes of linear body acceleration signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Magnitude of linear Body Acceleration signals- Mean value
+
+### fBodyAccMagStd
+standard deviation of the Fast Fourier Transformed (FFT) magnitudes of linear body acceleration signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Magnitude of linear Body Acceleration signals- Standard Deviation value
+
+### fBodyAccJerkMagMean
+mean of the Fast Fourier Transformed (FFT) magnitudes of jerk signals obtained from linear body acceleration signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Magnitude of Jerk (first derivative of linear Body Acceleration) signals- Mean value
+
+### fBodyAccJerkMagStd
+standard deviation of the Fast Fourier Transformed (FFT) magnitudes of jerk signals obtained from linear body acceleration signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Magnitude of Jerk (first derivative of linear Body Acceleration) signals- Standard Deviation value
+
+### fBodyGyroMagMean
+mean of the Fast Fourier Transformed (FFT) magnitudes of angular body velocity signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Magnitude of angular Body velocity signals (using Gyroscope)- Mean value
+
+### fBodyGyroMagStd
+standard deviation of the Fast Fourier Transformed (FFT) magnitudes of angular body velocity signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Magnitude of angular Body velocity signals (using Gyroscope)- Standard Deviation value
+
+### fBodyGyroJerkMagMean
+mean of the Fast Fourier Transformed (FFT) magnitudes of jerk signals obtained from angular body velocity signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Magnitude of Jerk (first derivative of angular Body velocity) signals (using Gyroscope)- Mean value
+
+### fBodyGyroJerkMagStd
+standard deviation of the Fast Fourier Transformed (FFT) magnitudes of jerk signals obtained from angular body velocity signals using the Euclidean norm.
+
+> variable  class: numeric
+> unique values: 180
+> unit of measurement: none
+> levels of descriptors: in frequency domain- Magnitude of Jerk (first derivative of angular Body velocity) signals (using Gyroscope)- Standard Deviation value
+
+##Sources
+Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013
