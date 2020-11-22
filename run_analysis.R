@@ -1,6 +1,5 @@
 library(readr)
 library(dplyr)
-library(stringr)
 
 ####Reading the data in tabular form in R;
 ####Read along with the original column names for convenience
